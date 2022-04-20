@@ -1,10 +1,13 @@
 <template>
     <NavBar />
-    <div class="bg-white rounded-md p-7 shadow-xl xl:col-span-2 mx-4 mt-8">
-        <ReuseCard 
-        v-for="thread in threads"
-        :key="thread.id"
-        :thread="thread" />
+    <div class="pt-12">
+        <div class="bg-white rounded-md p-7 shadow-xl xl:col-span-2 mx-4 mt-8">
+            <ReuseCard 
+            v-for="thread in threads"
+            :key="thread.id"
+            :thread="thread" />
+        </div>
+
     </div>
 </template>
 

@@ -1,8 +1,8 @@
 <template>
     <NavBar />
 
-    <section class="px-8 pt-8 w-full">
-        <div class="grid grid-cols-2 gap-2.5 md:grid-cols-2 lg:grid-cols-4">
+    <section class="px-8 pt-16 w-full">
+        <div class="grid grid-cols-2 gap-2.5 md:grid-cols-2 lg:grid-cols-2">
             <div class="bg-white rounded-md p-7 shadow-xl xl:col-span-2">
                 <!-- CARD -->
             <ReuseCard 
@@ -10,14 +10,17 @@
             :key="thread.id"
             :thread="thread"
             />
-
             </div>
 
 
             <div class="p-2 xl:col-span-2">
-                <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                <div class=" overflow-x-auto shadow-md sm:rounded-lg">
                     <!-- TABLE -->
-                    <ReuseTable />
+                    <ReuseTable
+                    v-for="manga in mangas"
+                    :key="manga.id"
+                    :manga="manga"
+                    />
                 </div>
             </div>
         </div>
@@ -38,13 +41,14 @@ export default {
         ReuseTable,
     },
     methods: {
-        ...mapActions(useCounterStore, ["getThreads"]),
+        ...mapActions(useCounterStore, ["getThreads", "getManga"]),
     },
     computed: {
-        ...mapState(useCounterStore, ["threads"]),
+        ...mapState(useCounterStore, ["threads", "mangas"]),
     },
     mounted() {
         this.getThreads()
+        this.getManga()
     }
 };
 </script>
