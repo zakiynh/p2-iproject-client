@@ -24,7 +24,7 @@
                         />
                     </div>
 
-                    <button class="transform rounded-md bg-green-600 py-2 font-bold duration-300 hover:bg-green-400">LOG IN</button>
+                    <button @click.prevent="doSignIn" class="transform rounded-md bg-green-600 py-2 font-bold duration-300 hover:bg-green-400">LOG IN</button>
 
                     <p class="text-center text-lg text-green-500">OR</p>
 
@@ -57,7 +57,25 @@
 </template>
 
 <script>
+import { useCounterStore } from "@/stores/counter";
+import { mapStores } from "pinia";
 
+export default {
+    data() {
+        return {
+            email: "",
+            password: ""
+        };
+    },
+    computed: {
+        ...mapStores(useCounterStore)
+    },
+    methods: {
+        doSignIn() {
+            this.counterStore.submitSignin(this.email, this.password);
+        }
+    },
+}
 </script>
 
 <style></style>

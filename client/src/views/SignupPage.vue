@@ -33,7 +33,7 @@
                         />
                     </div>
 
-                    <button class="transform rounded-md bg-green-600 py-2 font-bold duration-300 hover:bg-green-400">
+                    <button @click.prevent="doSignUp" class="transform rounded-md bg-green-600 py-2 font-bold duration-300 hover:bg-green-400">
                         Register
                     </button>
 
@@ -59,8 +59,8 @@
                     <p class="text-center text-lg text-green-500">
                         Have Account?
                         <router-link to="/signin" href="" class="font-medium text-green-500 cursor-pointer underline-offset-4 hover:underline"
-                            >Signin here</router-link
-                        >
+                            >Signin here
+                        </router-link>
                     </p>
                 </section>
             </form>
@@ -68,7 +68,26 @@
 </template>
 
 <script>
+import { useCounterStore } from "@/stores/counter";
+import { mapStores } from "pinia";
 
+export default {
+    data() {
+        return {
+            username: "",
+            email: "",
+            password: ""
+        };
+    },
+    computed: {
+        ...mapStores(useCounterStore)
+    },
+    methods: {
+        doSignUp() {
+            this.counterStore.submitSignup(this.username, this.email, this.password);
+        }
+    },
+}
 </script>
 
 <style>
