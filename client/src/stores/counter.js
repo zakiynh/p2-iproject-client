@@ -4,7 +4,9 @@ import router from "../router";
 
 export const useCounterStore = defineStore({
     id: "counter",
-    state: () => ({}),
+    state: () => ({
+      threads: [],
+    }),
     getters: {},
     actions: {
         async submitSignup(username, email, password) {
@@ -41,5 +43,17 @@ export const useCounterStore = defineStore({
                 console.log(error);
             }
         },
+
+        async getThreads() {
+          try {
+            const { data } = await axios({
+              method: "get",
+              url: "/thread",
+            })
+            this.threads = data;
+          } catch (error) {
+              console.log(error)
+          }
+        }
     },
 });

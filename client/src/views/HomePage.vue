@@ -5,7 +5,11 @@
         <div class="grid grid-cols-2 gap-2.5 md:grid-cols-2 lg:grid-cols-4">
             <div class="bg-white rounded-md p-7 shadow-xl xl:col-span-2">
                 <!-- CARD -->
-            <ReuseCard />
+            <ReuseCard 
+            v-for="thread in threads"
+            :key="thread.id"
+            :thread="thread"
+            />
 
             </div>
 
@@ -21,16 +25,27 @@
 </template>
 
 <script>
+import { mapActions, mapState } from "pinia";
 import NavBar from "../components/NavBar.vue";
 import ReuseCard from "../components/ReuseCard.vue";
 import ReuseTable from "../components/ReuseTable.vue";
+import { useCounterStore } from "../stores/counter";
 
 export default {
     components: {
         NavBar,
         ReuseCard,
-        ReuseTable
+        ReuseTable,
     },
+    methods: {
+        ...mapActions(useCounterStore, ["getThreads"]),
+    },
+    computed: {
+        ...mapState(useCounterStore, ["threads"]),
+    },
+    mounted() {
+        this.getThreads()
+    }
 };
 </script>
 

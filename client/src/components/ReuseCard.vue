@@ -1,10 +1,10 @@
 <template>
     <div class="flex">
         <div
-            class="p-2 bg-center bg-cover w-16 rounded-xl h-16 flex-shrink-0"
-            style="background-image: url(https://www.theanimedaily.com/wp-content/uploads/2022/02/manga-series-1280x720-1.png)"
-        ></div>
-        <div class="w-full ml-2.5"><span class="block font-bold">Thread Title</span><span class="block text-sm text-gray-400"></span></div>
+            class="bg-center block bg-cover w-36 rounded-xl h-16 flex-shrink-0">
+            <img :src="thread.imgUrl" />
+        </div>
+        <div class="w-full ml-2.5"><span class="block font-bold">{{thread.title}}</span><span class="block text-sm text-gray-400"></span></div>
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill-rule="evenodd"
@@ -14,12 +14,13 @@
             ></path>
         </svg>
     </div>
-    <span class="block mt-3 text-gray-600">Ini adalah deskripsi dari forum</span>
+    <span class="block mt-8 text-gray-600">{{thread.content}}</span>
 </template>
 
 <script>
 export default {
     name: "ReuseCard",
+    props: ["thread"]
 }
 </script>
 
