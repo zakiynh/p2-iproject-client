@@ -60,17 +60,31 @@ export const useCounterStore = defineStore({
         },
 
         async getManga() {
-          console.log("masukkk");
           try {
             const { data } = await axios({
               method: "get",
               url: "/manga/manga",
             })
-            console.log(data, "<<<<MASUKDATA");
             this.mangas = data;
           } catch (error) {
               console.log(error)
           }
+        },
+
+        async getDetailThread(id) {
+          try {
+            const { data } = await axios({
+              method: "get",
+              url: `/thread/${id}`,
+            })
+            this.threads = data;
+          } catch (error) {
+              console.log(error)
+          }
+        },
+
+        async comments() {
+          
         }
     },
 });

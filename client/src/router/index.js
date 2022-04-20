@@ -4,6 +4,7 @@ import SignupPage from "../views/SignupPage.vue";
 import HomePage from "../views/HomePage.vue";
 import ForumPage from "../views/ForumPage.vue";
 import MangaPage from "../views/MangaPage.vue";
+import ForumDetailPage from "../views/ForumDetailPage.vue";
 
 const routes = [
     { path: "/", name: "HomePage", component: HomePage},
@@ -11,6 +12,7 @@ const routes = [
     { path: "/signup", name: "SignupPage", component: SignupPage},
     { path: "/forum", name: "ForumPage", component: ForumPage},
     { path: "/manga", name: "MangaPage", component: MangaPage},
+    { path: "/detail/:id(\\d+)", name: "DetailPage", component: ForumDetailPage},
 ]
 
 const router = createRouter({
