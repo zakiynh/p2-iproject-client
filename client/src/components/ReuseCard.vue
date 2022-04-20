@@ -1,6 +1,7 @@
 <template>
-    <div class="flex">
+    <div @click.prevent="submitDetail(thread.id)" class="flex">
         <div
+            
             class="bg-center block bg-cover w-36 rounded-xl h-16 flex-shrink-0">
             <img :src="thread.imgUrl" />
         </div>
@@ -17,10 +18,19 @@
     <span class="block mt-8 text-gray-600">{{thread.content}}</span>
 </template>
 
-<script>
+<script>import { mapActions } from "pinia";
+import { useCounterStore } from "../stores/counter";
+
 export default {
     name: "ReuseCard",
-    props: ["thread"]
+    props: ["thread"],
+    methods: {
+        ...mapActions(useCounterStore, ["getDetailThread"]),
+        submitDetail(id) {
+            this.getDetailThread(id);
+            this.$router.push('/detail/' + id);
+        }
+    }
 }
 </script>
 
