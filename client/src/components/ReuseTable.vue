@@ -7,13 +7,14 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap" scope="row">Ini adalah judul manga</th>
+            <tr class="bg-white  border-b dark:bg-gray-800 dark:border-gray-700">
+                <th class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap" scope="row">{{manga.attributes.canonicalTitle}}</th>
                 <td
+                    
                     class="p-2 bg-center bg-cover w-10 mr-3 rounded-xl h-16 flex-shrink-0"
-                    style="background-image: url(https://www.theanimedaily.com/wp-content/uploads/2022/02/manga-series-1280x720-1.png)"
+                    
                 >
-                    Sliver
+                    <img :src="manga.attributes.posterImage.small"/>
                 </td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"></tr>
@@ -25,6 +26,7 @@
 <script>
 export default {
     name: "ReuseTable",
+    props: ["manga"]
 }
 </script>
 
