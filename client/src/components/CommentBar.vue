@@ -15,15 +15,21 @@
                         ></path>
                     </svg>
                 </div>
-                <span class="block mt-8 text-gray-600">COMMENTNYA DIMARIH</span>
+                <span class="block mt-8 text-gray-600">{{comment}}</span>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import { useCounterStore } from "../stores/counter";
+import { mapState } from 'pinia'
 export default {
-    name: 'CommentBar'
+    name: 'CommentBar',
+    computed: {
+        ...mapState(useCounterStore, ["comment"]),
+        
+    },
 }
 </script>
 

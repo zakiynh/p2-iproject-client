@@ -9,6 +9,7 @@ export const useCounterStore = defineStore({
       threads: [],
       isLogin: true,
       mangas: [],
+      comment: "",
     }),
     getters: {},
     actions: {
@@ -83,8 +84,40 @@ export const useCounterStore = defineStore({
           }
         },
 
-        async comments() {
-          
+        async addComment(params, comment) {
+          try {
+            const { data } = await axios({
+              method: "post",
+              url: `/comments/${params.id}`,
+              headers: {
+                "access_token": localStorage.getItem("access_token")
+              },
+              data: {
+                comment: comment
+              }
+            })
+            console.log(data);
+            this.comment = data.commentData.comment
+          } catch (error) {
+              console.log(error)
+          }
+        },
+
+        addThreadAction(threadData) {
+          return axios({
+            method: "post",
+            url: "/thread",
+            headers: {
+              "access_token": localStorage.getItem("access_token")
+            },
+            data: {
+              title: threadData.title,
+              content: threadData.content,
+              imgUrl: threadData.imgUrl,
+            }
+          })
         }
+
+        
     },
 });

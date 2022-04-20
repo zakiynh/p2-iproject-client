@@ -13,6 +13,9 @@
                     <router-link to="/manga"
                         class="flex items-center py-2 transition-colors duration-150 text-gray-700 hover:text-blue-600 border-b-4 border-transparent hover:border-blue-500 ml-5"><span
                             class="text-sm">Manga List</span></router-link>
+                    <router-link to="/addThread"
+                        class="flex items-center py-2 transition-colors duration-150 text-gray-700 hover:text-blue-600 border-b-4 border-transparent hover:border-blue-500 ml-5"><span
+                            class="text-sm">Add Thread</span></router-link>
                 </div>
                 <div class="p-2 ml-auto flex-shrink-0 flex">
                     
