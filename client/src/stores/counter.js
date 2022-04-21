@@ -139,10 +139,10 @@ export const useCounterStore = defineStore({
           }
         },
 
-        addThreadAction(threadData) {
+        addThread(threadData) {
           return axios({
             method: "post",
-            url: "/thread",
+            url: "/thread/add",
             headers: {
               "access_token": localStorage.getItem("access_token")
             },
