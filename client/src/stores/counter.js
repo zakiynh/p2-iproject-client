@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import axios from "../../axios/axios";
 import router from "../router";
+import swal from "sweetalert2";
 const baseURL = 'http://localhost:3000/'
 
 export const useCounterStore = defineStore({
@@ -24,9 +25,21 @@ export const useCounterStore = defineStore({
                   password,
                 }
               })
+              swal.fire({
+                title: "Success",
+                text: "Signup Success",
+                icon: "success",
+                showConfirmButton: false,
+                timer: 1500
+              })
               router.push("/signin")
             } catch (error) {
-                console.log(error)
+              swal.fire({
+                title: "Error",
+                text: "Email must be unique",
+                icon: "error",
+                confirmButtonText: "OK",
+              })
             }
         },
 
@@ -43,8 +56,20 @@ export const useCounterStore = defineStore({
               localStorage.setItem("access_token", data.userData.access_token);
               localStorage.setItem("email", data.userData.email);
               router.push("/");
+              swal.fire({
+                title: "Success",
+                text: "Signin Success",
+                icon: "success",
+                showConfirmButton: false,
+                timer: 1500
+              })
             } catch (error) {
-                console.log(error);
+              swal.fire({
+                title: "Error",
+                text: "Invalid email/password",
+                icon: "error",
+                confirmButtonText: "OK",
+              })
             }
         },
 
@@ -96,10 +121,21 @@ export const useCounterStore = defineStore({
                 comment: comment
               }
             })
-            console.log(data);
+            swal.fire({
+              title: "Success",
+              text: "Comment Success",
+              icon: "success",
+              showConfirmButton: false,
+              timer: 1500
+            })
             this.comment = data.commentData.comment
           } catch (error) {
-              console.log(error)
+            swal.fire({
+              title: "Error",
+              text: "Comment Failed",
+              icon: "error",
+              confirmButtonText: "OK",
+            })
           }
         },
 
